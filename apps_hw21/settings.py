@@ -30,7 +30,7 @@ SECRET_KEY = env('DB_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DB_DEBUG')
 
-ALLOWED_HOSTS = list(env('DB_ALLOWED_HOSTS'))
+ALLOWED_HOSTS = env('DB_ALLOWED_HOSTS', cast=lambda v: v.split(','))
 
 
 # Application definition
