@@ -13,6 +13,10 @@ import os
 import environ
 from pathlib import Path
 
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['DB_SECRET_KEY']
+SECRET_KEY = env('DB_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ['DB_DEBUG']
+DEBUG = env('DB_DEBUG')
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = list(env('DB_ALLOWED_HOSTS'))
 
 
 # Application definition
@@ -78,11 +82,11 @@ WSGI_APPLICATION = 'apps_hw21.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ['DB_NAME'],
-        "USER": os.environ['DB_USER'],
-        "PASSWORD": os.environ['DB_USER_PASSWORD'],
-        "HOST": os.environ['DB_HOST'],
-        "PORT": os.environ['DB_PORT'],
+        "NAME": env('DB_NAME'),
+        "USER": env('DB_USER'),
+        "PASSWORD": env('DB_USER_PASSWORD'),
+        "HOST": env('DB_HOST'),
+        "PORT": env('DB_PORT'),
     }
 }
 
